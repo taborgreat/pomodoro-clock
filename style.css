@@ -1,0 +1,68 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    max-height: 500px;
+  }
+
+#container {
+    text-align: center;
+}
+
+body{
+    background-color: antiquewhite;
+}
+
+#title{
+    font-family:Arial, Helvetica, sans-serif;
+}
+  #timeDisplay {
+    border: 3px solid black;
+    width: 70%;
+    background-color: white;
+    margin: 15px auto;
+  }
+
+  #timerWords {
+    color: rgb(80, 79, 75);
+  }
+
+  #pauser{
+    margin-bottom: 15px;
+  }
+
+#sessionTimeManagement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+#breakTimeManagement {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+}
+#nonSettings {
+    background-color: rgb(127, 238, 241);
+
+}
+
+#settings {
+    background-color: rgb(230, 220, 220);
+    width: 50%;
+    margin: 50px auto;
+    padding-top: 15px;
+}
+
+#info {
+    margin: 40px auto;
+    width: 40%;
+}
+
+#resetButton {
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+}
