@@ -1,5 +1,7 @@
+//string for information at bottom of page
 const info = `This website is designed to simulate a Pomodoro Timer, a time management method based on 25-minute stretches of focused work broken by five-minute breaks. Adjust the timing to suit your requirements using the dedicated settings section.`;
 
+//converts seconds to xx:xx format
 function formatTime(seconds) {
   let min = Math.floor(seconds / 60);
   let sec = seconds % 60;
@@ -28,13 +30,14 @@ function reducer(state, { type, load }) {
   switch (type) {
     case ACTIONS.SETSESSIONTIME:
       if (load === "decrease") {
-        if (state.maxSessionLength <= 60) return state;
+        if (state.maxSessionLength <= 60) return state; //if below zero return state as it
         return {
           ...state,
-          maxSessionLength: state.maxSessionLength - 60,
+          maxSessionLength: state.maxSessionLength - 60, //otherwise, take off one minute
         };
       }
       return {
+        //if not taking off a minute, must be adding a minute
         ...state,
         maxSessionLength: state.maxSessionLength + 60,
       };
@@ -54,6 +57,7 @@ function reducer(state, { type, load }) {
 
     case ACTIONS.SETPAUSED:
       if (state.sessionRemainder != state.maxSessionLength)
+        //if time has changed, reset back to max
         return {
           ...state,
           isPaused: !state.isPaused,
@@ -65,17 +69,19 @@ function reducer(state, { type, load }) {
       };
 
     case ACTIONS.RESET:
-      return initialState;
+      return initialState; //reset everything back to initial state on FACTORY RESET
 
     case ACTIONS.TICK:
       if (!state.isPaused) {
+        //if not paused, remove a second
         const newSessionRemainder = state.sessionRemainder - 1;
         if (newSessionRemainder === 0) {
+          //if at zero seconds then switch from break to work
           const isBreak = !state.isBreak;
           const sessionRemainder = isBreak
             ? state.maxBreakLength
             : state.maxSessionLength;
-          isBreak ? state.breakSound.play() : state.workSound.play();
+          isBreak ? state.breakSound.play() : state.workSound.play(); //and play proper sound
           return {
             ...state,
             isBreak,
@@ -99,6 +105,7 @@ function App() {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
   React.useEffect(() => {
+    //sets up tick interval rate at one second
     const timer = setInterval(() => {
       dispatch({ type: ACTIONS.TICK });
     }, 1000);
