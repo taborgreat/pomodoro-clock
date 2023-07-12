@@ -120,7 +120,7 @@ function App() {
           id="pauser"
           onClick={() => dispatch({ type: ACTIONS.SETPAUSED })}
         >
-          {state.isPaused ? "Start" : "End"}
+          {state.isPaused ? "Start" : "Reset"}
         </button>
       </div>
       <div id="settings">
@@ -179,7 +179,7 @@ function App() {
           id="resetButton"
           onClick={() => dispatch({ type: ACTIONS.RESET })}
         >
-          RESET ALL
+          FACTORY RESET
         </button>
       </div>
       <p id="info">{info}</p>
